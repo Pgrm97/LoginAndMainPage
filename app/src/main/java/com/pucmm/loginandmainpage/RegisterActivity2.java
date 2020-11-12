@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class RegisterActivity2 extends AppCompatActivity {
@@ -22,7 +23,7 @@ public class RegisterActivity2 extends AppCompatActivity {
         forgotPasswordRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(RegisterActivity2.this, HomeActivity.class));
+                startActivity(new Intent(RegisterActivity2.this, ForgotPasswordActivity.class));
             }
         });
 
@@ -30,7 +31,15 @@ public class RegisterActivity2 extends AppCompatActivity {
         loginRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(RegisterActivity2.this, RegisterActivity2.class));
+                startActivity(new Intent(RegisterActivity2.this, HomeActivity.class));
+            }
+        });
+
+        Button registerButton = findViewById(R.id.registerButton);
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(RegisterActivity2.this, HomeActivity.class));
             }
         });
     }

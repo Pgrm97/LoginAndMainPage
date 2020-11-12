@@ -8,20 +8,21 @@
     tools:context=".RegisterActivity2">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="137dp"
-        android:layout_height="118dp"
-        android:layout_marginStart="136dp"
-        android:layout_marginLeft="136dp"
+        android:id="@+id/imageView2"
+        android:layout_width="161dp"
+        android:layout_height="144dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginLeft="124dp"
+        android:layout_marginTop="64dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_baseline_contacts_24"
-        tools:layout_editor_absoluteY="84dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_account_circle_24" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/registerButton"
         android:layout_width="155dp"
         android:layout_height="41dp"
-        android:layout_marginTop="596dp"
+        android:layout_marginTop="608dp"
         android:background="@drawable/rounded_button"
         android:text="Register"
         app:layout_constraintEnd_toEndOf="parent"
@@ -77,16 +78,16 @@
         android:layout_marginTop="4dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <EditText
         android:id="@+id/editTextEmailRegister"
-        android:layout_width="352dp"
-        android:layout_height="37dp"
+        android:layout_width="353dp"
+        android:layout_height="43dp"
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textEmailAddress"
         app:layout_constraintStart_toStartOf="parent"
@@ -104,8 +105,8 @@
 
     <EditText
         android:id="@+id/editTextPasswordRegister"
-        android:layout_width="350dp"
-        android:layout_height="38dp"
+        android:layout_width="352dp"
+        android:layout_height="46dp"
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
         android:ems="10"
@@ -115,8 +116,8 @@
 
     <EditText
         android:id="@+id/editTextPasswordRegister2"
-        android:layout_width="349dp"
-        android:layout_height="39dp"
+        android:layout_width="353dp"
+        android:layout_height="44dp"
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
         android:ems="10"
@@ -136,7 +137,7 @@
 
     <EditText
         android:id="@+id/editTextPhone"
-        android:layout_width="355dp"
+        android:layout_width="353dp"
         android:layout_height="36dp"
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
@@ -155,7 +156,6 @@
         android:layout_marginTop="4dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
@@ -165,7 +165,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
-        android:layout_marginTop="224dp"
+        android:layout_marginTop="200dp"
         android:text="Enter Name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -176,7 +176,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
-        android:layout_marginTop="288dp"
+        android:layout_marginTop="272dp"
         android:text="Enter User"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -187,7 +187,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
-        android:layout_marginTop="356dp"
+        android:layout_marginTop="340dp"
         android:text="Enter Email"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
