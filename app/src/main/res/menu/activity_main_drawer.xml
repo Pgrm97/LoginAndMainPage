@@ -6,15 +6,44 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_home" />
+            android:title="Home"
+            android:icon="@drawable/ic_baseline_home_24"/>
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
+            android:id="@+id/nav_category"
+            android:title="Category"
+            android:icon="@drawable/ic_baseline_border_all_24"/>
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
+            android:id="@+id/nav_product"
+            android:title="Product"
+            android:icon="@drawable/ic_baseline_shopping_basket_24"/>
+        <item
+            android:id="@+id/nav_order"
+            android:title="Order"
+            android:icon="@drawable/ic_baseline_note_add_24"/>
+        <item
+            android:id="@+id/nav_order_tracking"
+            android:title="Order Tracking"
+            android:icon="@drawable/ic_baseline_gps_fixed_24"/>
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_list_os"
+            android:title="List OS"
+            android:icon="@drawable/ic_baseline_dehaze_24"/>
+    </group>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_help"
+            android:title="Help"
+            android:icon="@drawable/ic_baseline_help_24"/>
+        <item
+            android:id="@+id/nav_profile"
+            android:title="Profile"
+            android:icon="@drawable/ic_baseline_person_24"/>
+        <item
+            android:id="@+id/nav_logout"
+            android:title="Log Out"
+            android:icon="@drawable/ic_outline_input_24"/>
     </group>
 </menu>

@@ -2,6 +2,7 @@ package com.pucmm.loginandmainpage;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -39,7 +40,7 @@ public class HomeActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(HomeActivity.this, MainPageActivity.class));
+                startActivity(new Intent(HomeActivity.this, DrawerActivity.class));
             }
         });
 
