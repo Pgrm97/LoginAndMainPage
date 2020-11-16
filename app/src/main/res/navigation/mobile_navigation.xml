@@ -27,4 +27,9 @@
         android:name="com.pucmm.loginandmainpage.ui.listos.ListOS"
         android:label="List OS"
         tools:layout="@layout/list_os_fragment" />
+    <activity
+        android:id="@+id/homeActivity"
+        android:name="com.pucmm.loginandmainpage.HomeActivity"
+        android:label="activity_home"
+        tools:layout="@layout/activity_home" />
 </navigation>

@@ -48,7 +48,7 @@
             android:title="Profile"
             android:icon="@drawable/ic_baseline_person_24"/>
         <item
-            android:id="@+id/nav_logout"
+            android:id="@+id/homeActivity"
             android:title="Log Out"
             android:icon="@drawable/ic_outline_input_24"/>
     </group>
