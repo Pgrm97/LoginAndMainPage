@@ -1,4 +1,4 @@
-package com.pucmm.loginandmainpage;
+package com.pucmm.loginandmainpage.ui.listos;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

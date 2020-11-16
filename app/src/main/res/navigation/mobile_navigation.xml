@@ -22,4 +22,9 @@
         android:name="com.pucmm.loginandmainpage.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+    <fragment
+        android:id="@+id/listOS2"
+        android:name="com.pucmm.loginandmainpage.ui.listos.ListOS"
+        android:label="List OS"
+        tools:layout="@layout/list_os_fragment" />
 </navigation>

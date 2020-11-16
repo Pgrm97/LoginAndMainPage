@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group
+        android:id="@+id/drawer_top"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
             android:title="Home"
@@ -26,13 +28,17 @@
             android:icon="@drawable/ic_baseline_gps_fixed_24"/>
     </group>
 
-    <group android:checkableBehavior="single">
+    <group
+        android:id="@+id/drawer_mid"
+        android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_list_os"
+            android:id="@+id/listOS2"
             android:title="List OS"
             android:icon="@drawable/ic_baseline_dehaze_24"/>
     </group>
-    <group android:checkableBehavior="single">
+    <group
+        android:id="@+id/drawer_bottom"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_help"
             android:title="Help"
