@@ -13,7 +13,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.pucmm.loginandmainpage.database.RoomDB;
+
 public class HomeActivity extends AppCompatActivity {
+
+    private RoomDB database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,4 +1,4 @@
-package com.pucmm.segundoparcial;
+package com.pucmm.loginandmainpage.database;
 
 import android.content.Context;
 
@@ -7,7 +7,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 //Add database entities
-@Database(entities = {MainData.class, ProductData.class}, version = 2, exportSchema = false)
+@Database(entities = {UserData.class}, version = 1, exportSchema = false)
 
 public abstract class RoomDB extends RoomDatabase {
     //Create database instance
@@ -30,8 +30,5 @@ public abstract class RoomDB extends RoomDatabase {
     }
 
     //Create Dao
-    public abstract MainDao mainDao();
-    // Create product Dao
-    public abstract ProductDao productDao();
-
+    public abstract UserDao userDao();
 }
