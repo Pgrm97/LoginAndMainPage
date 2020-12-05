@@ -32,6 +32,6 @@ public interface UserDao {
     List<String> getPasswordForLogin(String userName);
 
     //Get password from email for Forgot Password.
-    @Query("SELECT password FROM user_table WHERE email = :email")
-    List<String> getPasswordFromEmail(String email);
+    @Query("SELECT password FROM user_table WHERE email = :email LIMIT 1")
+    String getPasswordFromEmail(String email);
 }
