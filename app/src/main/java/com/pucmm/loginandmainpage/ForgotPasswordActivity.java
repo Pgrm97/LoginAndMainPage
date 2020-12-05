@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -40,11 +41,17 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                 if(!sEmail.equals("")){
                     String password;
                     password = database.userDao().getPasswordFromEmail(sEmail);
-                    if(!password.equals("")){
-                        Toast.makeText(ForgotPasswordActivity.this, "The password is: " + password, Toast.LENGTH_SHORT).show();
-                    }
-                    else{
+                    if(password == null){
+                        InputMethodManager imm = (InputMethodManager)getSystemService(ForgotPasswordActivity.this.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                         Toast.makeText(ForgotPasswordActivity.this, "Password doesn't exist.", Toast.LENGTH_SHORT).show();
+                        emailText.setText("");
+                    }
+                    else if (!password.equals("")){
+                        InputMethodManager imm = (InputMethodManager)getSystemService(ForgotPasswordActivity.this.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                        Toast.makeText(ForgotPasswordActivity.this, "The password is: " + password, Toast.LENGTH_SHORT).show();
+                        emailText.setText("");
                     }
                 }
                 if(sEmail.equals("")){
