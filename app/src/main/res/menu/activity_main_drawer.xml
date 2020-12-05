@@ -18,24 +18,24 @@
             android:id="@+id/nav_product"
             android:title="Product"
             android:icon="@drawable/ic_baseline_shopping_basket_24"/>
-        <item
-            android:id="@+id/nav_order"
-            android:title="Order"
-            android:icon="@drawable/ic_baseline_note_add_24"/>
-        <item
-            android:id="@+id/nav_order_tracking"
-            android:title="Order Tracking"
-            android:icon="@drawable/ic_baseline_gps_fixed_24"/>
+<!--        <item-->
+<!--            android:id="@+id/nav_order"-->
+<!--            android:title="Order"-->
+<!--            android:icon="@drawable/ic_baseline_note_add_24"/>-->
+<!--        <item-->
+<!--            android:id="@+id/nav_order_tracking"-->
+<!--            android:title="Order Tracking"-->
+<!--            android:icon="@drawable/ic_baseline_gps_fixed_24"/>-->
     </group>
 
-    <group
-        android:id="@+id/drawer_mid"
-        android:checkableBehavior="single">
-        <item
-            android:id="@+id/listOS2"
-            android:title="List OS"
-            android:icon="@drawable/ic_baseline_dehaze_24"/>
-    </group>
+<!--    <group-->
+<!--        android:id="@+id/drawer_mid"-->
+<!--        android:checkableBehavior="single">-->
+<!--        <item-->
+<!--            android:id="@+id/listOS2"-->
+<!--            android:title="List OS"-->
+<!--            android:icon="@drawable/ic_baseline_dehaze_24"/>-->
+<!--    </group>-->
     <group
         android:id="@+id/drawer_bottom"
         android:checkableBehavior="single">
