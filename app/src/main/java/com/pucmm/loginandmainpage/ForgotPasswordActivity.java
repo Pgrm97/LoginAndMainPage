@@ -50,7 +50,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                     else if (!password.equals("")){
                         InputMethodManager imm = (InputMethodManager)getSystemService(ForgotPasswordActivity.this.INPUT_METHOD_SERVICE);
                         imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-                        Toast.makeText(ForgotPasswordActivity.this, "The password is: " + password, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ForgotPasswordActivity.this, password, Toast.LENGTH_SHORT).show();
                         emailText.setText("");
                     }
                 }
