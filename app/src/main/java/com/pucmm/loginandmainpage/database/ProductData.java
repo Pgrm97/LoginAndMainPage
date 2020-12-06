@@ -18,9 +18,6 @@ public class ProductData implements Serializable {
     @ColumnInfo(name = "description")
     private String description;
 
-    @ColumnInfo(name = "product_img")
-    private byte[] productImg;
-
     @ColumnInfo(name = "price")
     private String price;
 
@@ -47,14 +44,6 @@ public class ProductData implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public byte[] getProductImg() {
-        return productImg;
-    }
-
-    public void setProductImg(byte[] productImg) {
-        this.productImg = productImg;
     }
 
     public String getPrice() {

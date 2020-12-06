@@ -15,8 +15,7 @@ public class CategoryData implements Serializable {
     @ColumnInfo(name = "category_name")
     private String categoryName;
 
-    @ColumnInfo(name = "category_img")
-    private Byte[] categoryImg;
+
 
 
     public int getID() {
@@ -33,14 +32,6 @@ public class CategoryData implements Serializable {
 
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
-    }
-
-    public Byte[] getCategoryImg(byte[] categoryImg) {
-        return this.categoryImg;
-    }
-
-    public void setCategoryImg(Byte[] categoryImg) {
-        this.categoryImg = categoryImg;
     }
 
 }

@@ -55,7 +55,6 @@ public class CategoryActivity extends AppCompatActivity {
                     CategoryData data = new CategoryData();
 
                     data.setCategoryName(CategoryName);
-                    data.getCategoryImg(CategoryImg);
 
                     database.categoryDao().insert(data);
 
