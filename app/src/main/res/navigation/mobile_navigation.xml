@@ -32,4 +32,9 @@
         android:name="com.pucmm.loginandmainpage.HomeActivity"
         android:label="activity_home"
         tools:layout="@layout/activity_home" />
+    <activity
+        android:id="@+id/categoryActivity"
+        android:name="com.pucmm.loginandmainpage.CategoryActivity"
+        android:label="activity_category"
+        tools:layout="@layout/activity_category" />
 </navigation>
