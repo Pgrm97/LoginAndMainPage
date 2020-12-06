@@ -82,9 +82,9 @@ public class CategoryActivity extends AppCompatActivity {
                     data.setCategoryName(CategoryName);
 
                     database.categoryDao().insert(data);
-                    Toast.makeText(CategoryActivity.this, "Categoria agregada correctamente", Toast.LENGTH_SHORT).show();
                     Categorynametext.setText("");
                     Categoryimagentext.setImageResource(R.drawable.ic_menu_camera);
+                    Toast.makeText(CategoryActivity.this, "Categoria agregada correctamente", Toast.LENGTH_SHORT).show();
 
                 }
                 if(CategoryName.equals("")){

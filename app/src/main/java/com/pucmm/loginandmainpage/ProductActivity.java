@@ -90,11 +90,11 @@ public class ProductActivity extends AppCompatActivity {
                     data.setPrice(Product_price);
 
                     database.productDao().insert(data);
-                    Toast.makeText(ProductActivity.this, "Producto agregado correctamente", Toast.LENGTH_SHORT).show();
                     Productcode.setText("");
                     description.setText("");
                     price.setText("");
                     ProductImage.setImageResource(R.drawable.ic_menu_camera);
+                    Toast.makeText(ProductActivity.this, "Producto agregado correctamente", Toast.LENGTH_SHORT).show();
 
                 }
                 if(Product_code.equals("")){
