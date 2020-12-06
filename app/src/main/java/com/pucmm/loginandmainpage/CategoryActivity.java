@@ -34,7 +34,6 @@ public class CategoryActivity extends AppCompatActivity {
 
     private int STORAGE_PERMISSION_CODE = 1;
     private RoomDB database;
-    private byte[] imageInByte;
     private StorageReference storageRef;
     private int PICK_IMAGE_REQUEST = 1;
     private Bitmap bitmap;
@@ -48,7 +47,7 @@ public class CategoryActivity extends AppCompatActivity {
         database = RoomDB.getInstance(CategoryActivity.this);
         FirebaseApp customApp = FirebaseApp.initializeApp(this);
         FirebaseStorage storage = FirebaseStorage.getInstance(customApp);
-         storageRef = storage.getReference();
+        storageRef = storage.getReference();
 
         Button AddCategoryButton = (Button) findViewById(R.id.AddCategoryButton);
         final EditText Categorynametext;
