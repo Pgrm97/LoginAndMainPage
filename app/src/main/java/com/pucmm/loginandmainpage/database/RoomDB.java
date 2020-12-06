@@ -7,13 +7,13 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 //Add database entities
-@Database(entities = {UserData.class}, version = 1, exportSchema = false)
+@Database(entities = {UserData.class,CategoryData.class,ProductData.class}, version = 1, exportSchema = false)
 
 public abstract class RoomDB extends RoomDatabase {
     //Create database instance
     private static RoomDB database;
     //Define database
-    private static String DATABASE_NAME = "database";
+    private static String DATABASE_NAME = "ProductManager";
 
     public synchronized static RoomDB getInstance(Context context){
         //Check condition
@@ -31,4 +31,6 @@ public abstract class RoomDB extends RoomDatabase {
 
     //Create Dao
     public abstract UserDao userDao();
+    public abstract CategoryDao categoryDao();
+    public abstract ProductDao productDao();
 }
