@@ -35,24 +35,23 @@
         android:layout_width="154dp"
         android:layout_height="135dp"
         android:layout_marginTop="44dp"
+        android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.105"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CategoryName"
         app:srcCompat="@drawable/ic_menu_camera" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <Button
         android:id="@+id/AddCategoryButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        app:backgroundTint="@color/colorPrimary"
+        android:layout_width="98dp"
+        android:layout_height="82dp"
+        android:background="@android:drawable/ic_input_add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.538"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CategoryImg"
-        app:layout_constraintVertical_bias="0.251"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:layout_constraintVertical_bias="0.349" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

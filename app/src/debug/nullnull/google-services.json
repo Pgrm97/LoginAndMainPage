@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1091446333159",
+    "project_id": "te-final-c500f",
+    "storage_bucket": "te-final-c500f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1091446333159:android:fa737d913c086b20e10c42",
+        "android_client_info": {
+          "package_name": "com.pucmm.loginandmainpage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1091446333159-8o0lhk6nmllaei34duand0o7ks5ae1m3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3BM6qdborsFW8O1yI4n7D1OErOZIQikY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1091446333159-8o0lhk6nmllaei34duand0o7ks5ae1m3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

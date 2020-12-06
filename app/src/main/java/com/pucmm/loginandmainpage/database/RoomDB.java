@@ -13,7 +13,7 @@ public abstract class RoomDB extends RoomDatabase {
     //Create database instance
     private static RoomDB database;
     //Define database
-    private static String DATABASE_NAME = "ProductManager";
+    private static String DATABASE_NAME = "ProductManager2";
 
     public synchronized static RoomDB getInstance(Context context){
         //Check condition
