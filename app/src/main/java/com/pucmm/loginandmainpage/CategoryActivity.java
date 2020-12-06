@@ -13,6 +13,9 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.pucmm.loginandmainpage.database.CategoryData;
 import com.pucmm.loginandmainpage.database.RoomDB;
 import com.pucmm.loginandmainpage.database.UserData;
@@ -31,6 +34,9 @@ public class CategoryActivity extends AppCompatActivity {
 
         database = RoomDB.getInstance(CategoryActivity.this);
 
+        FirebaseStorage storage = FirebaseStorage.getInstance("gs://te-final-c500f.appspot.com");
+        StorageReference storageRef = storage.getReference();
+
         Button AddCategoryButton = findViewById(R.id.AddCategoryButton);
         final EditText Categorynametext;
         final ImageView Categoryimagentext;
@@ -42,13 +48,13 @@ public class CategoryActivity extends AppCompatActivity {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         imageInByte = baos.toByteArray();
+        UploadTask uploadTask = storageRef.putBytes(imageInByte);
 
         AddCategoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 String CategoryName = Categorynametext.getText().toString().trim();
-                byte [] CategoryImg =  imageInByte;
 
                 if(!CategoryName.equals("")){
 
