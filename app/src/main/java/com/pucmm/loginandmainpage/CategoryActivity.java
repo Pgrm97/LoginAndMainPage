@@ -73,7 +73,7 @@ public class CategoryActivity extends AppCompatActivity {
                 byte [] Photo =  getStringImagen(bitmap);
                 String PhotoName  = CategoryName + ".jpg";
                 StorageReference mountainImagesRef = storageRef.child("images/" + PhotoName);
-                UploadTask uploadTask = mountainImagesRef.putBytes(Photo);
+
 
                 if(!CategoryName.equals("")){
 
@@ -84,11 +84,13 @@ public class CategoryActivity extends AppCompatActivity {
                     database.categoryDao().insert(data);
                     Toast.makeText(CategoryActivity.this, "Categoria agregada correctamente", Toast.LENGTH_SHORT).show();
                     Categorynametext.setText("");
+                    Categoryimagentext.setImageResource(R.drawable.ic_menu_camera);
 
                 }
                 if(CategoryName.equals("")){
                     Categorynametext.setError("Please enter a Category name!");
                 }
+                UploadTask uploadTask = mountainImagesRef.putBytes(Photo);
 
             }
         });
