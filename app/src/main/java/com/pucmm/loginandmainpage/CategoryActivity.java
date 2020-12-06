@@ -70,12 +70,11 @@ public class CategoryActivity extends AppCompatActivity {
         AddCategoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 String CategoryName = Categorynametext.getText().toString().trim();
-                byte [] prueba =  getStringImagen(bitmap);
-                StorageReference mountainImagesRef = storageRef.child("images/prueba.jpg");
-                UploadTask uploadTask = mountainImagesRef.putBytes(prueba);
+                byte [] Photo =  getStringImagen(bitmap);
+                String PhotoName  = CategoryName + ".jpg";
+                StorageReference mountainImagesRef = storageRef.child("images/" + PhotoName);
+                UploadTask uploadTask = mountainImagesRef.putBytes(Photo);
 
                 if(!CategoryName.equals("")){
 
@@ -84,7 +83,7 @@ public class CategoryActivity extends AppCompatActivity {
                     data.setCategoryName(CategoryName);
 
                     database.categoryDao().insert(data);
-
+                    Toast.makeText(CategoryActivity.this, "Categoria agregada correctamente", Toast.LENGTH_SHORT).show();
                     Categorynametext.setText("");
 
                 }
@@ -102,6 +101,14 @@ public class CategoryActivity extends AppCompatActivity {
         bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] imageBytes = baos.toByteArray();
         return imageBytes;
+    }
+
+    public String getStringNameImagen(Bitmap bmp){
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] imageBytes = baos.toByteArray();
+        String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        return encodedImage;
     }
 
     @Override
