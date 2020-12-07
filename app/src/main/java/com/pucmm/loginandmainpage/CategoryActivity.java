@@ -41,6 +41,7 @@ public class CategoryActivity extends AppCompatActivity {
     private StorageReference storageRef;
     private int PICK_IMAGE_REQUEST = 1;
     private Bitmap bitmap;
+    EditText Categorynametext;
     private ImageView Categoryimagentext;
     private int id;
     private  CategoryData categoryData = new CategoryData();
@@ -50,7 +51,7 @@ public class CategoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
 
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         id = intent.getIntExtra("idCategory",0);
         database = RoomDB.getInstance(CategoryActivity.this);
         final FirebaseApp customApp = FirebaseApp.initializeApp(this);
@@ -58,7 +59,7 @@ public class CategoryActivity extends AppCompatActivity {
         storageRef = storage.getReference();
 
         Button AddCategoryButton = (Button) findViewById(R.id.AddCategoryButton);
-        final EditText Categorynametext;
+
 
 
         Categorynametext = findViewById(R.id.CategoryName);
@@ -94,37 +95,32 @@ public class CategoryActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(CategoryActivity.this, "Espere un momento, guardando categoria", Toast.LENGTH_SHORT).show();
                 final String CategoryName = Categorynametext.getText().toString().trim();
-                byte [] Photo =  getStringImagen(bitmap);
                 final CategoryData data = categoryData;
-                String PhotoName  = CategoryName + ".jpg";
-                final StorageReference mountainImagesRef = storageRef.child("images/" + PhotoName);
-                UploadTask uploadTask = mountainImagesRef.putBytes(Photo);
-                uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
+                if(bitmap != null){
+                    byte [] Photo =  getStringImagen(bitmap);
+                    String PhotoName  = CategoryName + ".jpg";
+                    final StorageReference mountainImagesRef = storageRef.child("images/" + PhotoName);
+                    UploadTask uploadTask = mountainImagesRef.putBytes(Photo);
+                    uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
 
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                        mountainImagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            mountainImagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
 
-                            @Override
-                            public void onSuccess(Uri uri) {
-                                final String url = uri.toString();
-                                data.setCategoryimage(url);
-                                if(!CategoryName.equals("")){
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final String url = uri.toString();
+                                    data.setCategoryimage(url);
+                                    if(!CategoryName.equals("")){
 
-                                    data.setCategoryName(CategoryName);
-                                    if(id != 0){
-                                        database.categoryDao().update(data);
-                                    }else{
-                                        database.categoryDao().insert(data);
+                                        data.setCategoryName(CategoryName);
+                                        addCategory(data);
                                     }
-                                    Categorynametext.setText("");
-                                    Categoryimagentext.setImageResource(R.drawable.ic_menu_camera);
-                                    Toast.makeText(CategoryActivity.this, "Categoria agregada correctamente", Toast.LENGTH_SHORT).show();
-
-                                }
-                            }});}});
-
+                                }});}});
+                }else if(id != 0){
+                    addCategory(data);
+                }
 
                 if(CategoryName.equals("")){
                     Categorynametext.setError("Please enter a Category name!");
@@ -135,6 +131,20 @@ public class CategoryActivity extends AppCompatActivity {
 
     }
 
+    private void addCategory(CategoryData data){
+        if(id != 0){
+            database.categoryDao().update(data);
+        }else{
+            database.categoryDao().insert(data);
+        }
+        Categorynametext.setText("");
+        Categoryimagentext.setImageResource(R.drawable.ic_menu_camera);
+        Toast.makeText(CategoryActivity.this, "Categoria agregada correctamente", Toast.LENGTH_SHORT).show();
+        setResult(10);
+        this.finish();
+
+
+    }
     public byte[] getStringImagen(Bitmap bmp){
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
@@ -160,6 +170,7 @@ public class CategoryActivity extends AppCompatActivity {
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                 Categoryimagentext.setImageBitmap(bitmap);
             } catch (IOException e) {
+                bitmap = null;
                 e.printStackTrace();
             }
         }

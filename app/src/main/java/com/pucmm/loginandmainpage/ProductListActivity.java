@@ -1,9 +1,11 @@
 package com.pucmm.loginandmainpage;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -22,6 +24,7 @@ public class ProductListActivity extends AppCompatActivity {
     private int STORAGE_PERMISSION_CODE = 1;
     private RoomDB database;
     private RecyclerView.LayoutManager layoutManager;
+    RecyclerView recyclerView;
     private int idCategory;
     List<ProductData> data;
 
@@ -31,9 +34,23 @@ public class ProductListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product_list);
 
         database = RoomDB.getInstance(ProductListActivity.this);
-        RecyclerView recyclerView = findViewById(R.id.rvProducts);
+        recyclerView = findViewById(R.id.rvProducts);
         Intent intent = getIntent();
         idCategory = intent.getIntExtra("idcategory", 0);
+
+        cargaritems();
+        
+        Button btn = (Button) findViewById(R.id.ProductAdd);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), ProductActivity.class);
+                startActivityForResult(intent, 0);
+            }
+        });
+
+    }
+    private void cargaritems(){
         if(idCategory != 0){
             data = database.productDao().getByCategory(idCategory);
         }else {
@@ -44,14 +61,13 @@ public class ProductListActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setAdapter(new ProductsAdapter(this,data));
         recyclerView.setLayoutManager(layoutManager);
+    }
 
-        Button btn = (Button) findViewById(R.id.ProductAdd);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), ProductActivity.class);
-                startActivityForResult(intent, 0);
-            }
-        });
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == 10){
+            cargaritems();
+        }
     }
 }

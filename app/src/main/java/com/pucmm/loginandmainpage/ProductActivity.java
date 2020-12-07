@@ -40,10 +40,14 @@ public class ProductActivity extends AppCompatActivity {
     private ImageView ProductImage;
     private StorageReference storageRef;
     private int PICK_IMAGE_REQUEST = 1;
-    private Bitmap bitmap;
+    private Bitmap bitmap = null;
     private ProductData productData = new ProductData();
     private int id;
-
+    EditText Productcode;
+    EditText description;
+    EditText price;
+    Spinner categories;
+    Button eliminarButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,11 +78,7 @@ public class ProductActivity extends AppCompatActivity {
 
 
         Button AddProductButton = (Button) findViewById(R.id.AddProduct);
-        final EditText Productcode;
-        final EditText description;
-        final EditText price;
-        final Spinner categories;
-        final Button eliminarButton;
+
         Productcode = findViewById(R.id.Productcode);
         description = findViewById(R.id.description);
         price = findViewById(R.id.price);
@@ -116,41 +116,50 @@ public class ProductActivity extends AppCompatActivity {
                 data.setPrice(price.getText().toString().trim());
                 data.setIDCategory(((CategoryData)categories.getSelectedItem() ).getID());
 
-                byte [] Photo =  getStringImagen(bitmap);
-                String PhotoName  = data.getProductCode() + ".jpg";
-                final StorageReference mountainImagesRef = storageRef.child("products/" + PhotoName);
-                UploadTask uploadTask = mountainImagesRef.putBytes(Photo);
+               if(bitmap != null){
+                   byte [] Photo =  getStringImagen(bitmap);
+                   String PhotoName  = data.getProductCode() + ".jpg";
+                   final StorageReference mountainImagesRef = storageRef.child("products/" + PhotoName);
+                   UploadTask uploadTask = mountainImagesRef.putBytes(Photo);
 
-                uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
+                   uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                       @Override
 
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                       public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                        mountainImagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                           mountainImagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
 
-                            @Override
-                            public void onSuccess(Uri uri) {
-                                final String url = uri.toString();
-                                data.setProductImage(url);
-                                if(!data.getProductCode().equals("")){
-
-                                    if (id != 0){
-                                        database.productDao().update(data);
-                                    }else{
-                                        database.productDao().insert(data);
-                                    }
-                                    Productcode.setText("");
-                                    description.setText("");
-                                    price.setText("");
-                                    ProductImage.setImageResource(R.drawable.ic_menu_camera);
-                                    Toast.makeText(ProductActivity.this, "Producto agregado correctamente", Toast.LENGTH_SHORT).show();
-
-                                }
-                            }});}});
+                               @Override
+                               public void onSuccess(Uri uri) {
+                                   final String url = uri.toString();
+                                   data.setProductImage(url);
+                                   addProduct(data);
+                               }});}});
+               }else if(id != 0){
+                    addProduct(data);
+               }
 
             }
         });
 
+    }
+    private void addProduct(ProductData data){
+        if(!data.getProductCode().equals("")){
+
+            if (id != 0){
+                database.productDao().update(data);
+            }else{
+                database.productDao().insert(data);
+            }
+            Productcode.setText("");
+            description.setText("");
+            price.setText("");
+            ProductImage.setImageResource(R.drawable.ic_menu_camera);
+            Toast.makeText(ProductActivity.this, "Producto agregado correctamente", Toast.LENGTH_SHORT).show();
+
+            setResult(10);
+            finish();
+        }
     }
     public byte[] getStringImagen(Bitmap bmp){
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -178,6 +187,7 @@ public class ProductActivity extends AppCompatActivity {
                 ProductImage.setImageBitmap(bitmap);
             } catch (IOException e) {
                 e.printStackTrace();
+                bitmap = null;
             }
         }
     }
