@@ -47,4 +47,9 @@
         android:name="com.pucmm.loginandmainpage.ProductListActivity"
         android:label="activity_product_list"
         tools:layout="@layout/activity_product_list" />
+    <activity
+        android:id="@+id/categoryListActivity"
+        android:name="com.pucmm.loginandmainpage.CategoryListActivity"
+        android:label="activity_category_list"
+        tools:layout="@layout/activity_category_list" />
 </navigation>

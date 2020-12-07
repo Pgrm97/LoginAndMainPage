@@ -24,8 +24,8 @@ public interface CategoryDao {
     void reset(List<CategoryData> categoryData);
 
     //Get all data query
-   // @Query("SELECT * FROM category_table")
-   // List<CategoryData> getAll();
+    @Query("SELECT category_name FROM category_table")
+   String [] getAll();
 
 
 }
