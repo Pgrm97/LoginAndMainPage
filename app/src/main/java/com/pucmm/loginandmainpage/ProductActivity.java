@@ -113,6 +113,7 @@ public class ProductActivity extends AppCompatActivity {
                 }
 
                 UploadTask uploadTask = mountainImagesRef.putBytes(Photo);
+                startActivity(new Intent(ProductActivity.this, ProductListActivity.class));
 
             }
         });
