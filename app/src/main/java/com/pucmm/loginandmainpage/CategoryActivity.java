@@ -21,12 +21,16 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.pucmm.loginandmainpage.database.CategoryData;
 import com.pucmm.loginandmainpage.database.RoomDB;
+import com.squareup.picasso.Picasso;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
@@ -38,14 +42,18 @@ public class CategoryActivity extends AppCompatActivity {
     private int PICK_IMAGE_REQUEST = 1;
     private Bitmap bitmap;
     private ImageView Categoryimagentext;
+    private int id;
+    private  CategoryData categoryData = new CategoryData();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
 
+        Intent intent = getIntent();
+        id = intent.getIntExtra("idCategory",0);
         database = RoomDB.getInstance(CategoryActivity.this);
-        FirebaseApp customApp = FirebaseApp.initializeApp(this);
+        final FirebaseApp customApp = FirebaseApp.initializeApp(this);
         FirebaseStorage storage = FirebaseStorage.getInstance(customApp);
         storageRef = storage.getReference();
 
@@ -55,6 +63,8 @@ public class CategoryActivity extends AppCompatActivity {
 
         Categorynametext = findViewById(R.id.CategoryName);
         Categoryimagentext = findViewById(R.id.CategoryImg);
+        Button btnBorrar = findViewById(R.id.eliminarButton);
+
         Categoryimagentext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,31 +76,59 @@ public class CategoryActivity extends AppCompatActivity {
             }
         });
 
+        if(id != 0){
+            categoryData = database.categoryDao().get(id);
+            Categorynametext.setText(categoryData.getCategoryName());
+            Picasso.get().load(categoryData.getCategoryimage()).into(Categoryimagentext);
+            AddCategoryButton.setText("Editar");
+            btnBorrar.setVisibility(View.VISIBLE);
+        }
+        btnBorrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                database.categoryDao().delete(categoryData);
+            }
+        });
         AddCategoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String CategoryName = Categorynametext.getText().toString().trim();
+                Toast.makeText(CategoryActivity.this, "Espere un momento, guardando categoria", Toast.LENGTH_SHORT).show();
+                final String CategoryName = Categorynametext.getText().toString().trim();
                 byte [] Photo =  getStringImagen(bitmap);
+                final CategoryData data = categoryData;
                 String PhotoName  = CategoryName + ".jpg";
-                StorageReference mountainImagesRef = storageRef.child("images/" + PhotoName);
+                final StorageReference mountainImagesRef = storageRef.child("images/" + PhotoName);
+                UploadTask uploadTask = mountainImagesRef.putBytes(Photo);
+                uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                        mountainImagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                final String url = uri.toString();
+                                data.setCategoryimage(url);
+                                if(!CategoryName.equals("")){
+
+                                    data.setCategoryName(CategoryName);
+                                    if(id != 0){
+                                        database.categoryDao().update(data);
+                                    }else{
+                                        database.categoryDao().insert(data);
+                                    }
+                                    Categorynametext.setText("");
+                                    Categoryimagentext.setImageResource(R.drawable.ic_menu_camera);
+                                    Toast.makeText(CategoryActivity.this, "Categoria agregada correctamente", Toast.LENGTH_SHORT).show();
+
+                                }
+                            }});}});
 
 
-                if(!CategoryName.equals("")){
-
-                    CategoryData data = new CategoryData();
-
-                    data.setCategoryName(CategoryName);
-
-                    database.categoryDao().insert(data);
-                    Categorynametext.setText("");
-                    Categoryimagentext.setImageResource(R.drawable.ic_menu_camera);
-                    Toast.makeText(CategoryActivity.this, "Categoria agregada correctamente", Toast.LENGTH_SHORT).show();
-
-                }
                 if(CategoryName.equals("")){
                     Categorynametext.setError("Please enter a Category name!");
                 }
-                UploadTask uploadTask = mountainImagesRef.putBytes(Photo);
 
             }
         });

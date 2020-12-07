@@ -1,6 +1,8 @@
 package com.pucmm.loginandmainpage;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,12 +11,19 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.pucmm.loginandmainpage.database.ProductData;
 import com.pucmm.loginandmainpage.database.RoomDB;
+import com.pucmm.loginandmainpage.ui.ProductsAdapter;
+
+import java.util.List;
 
 public class ProductListActivity extends AppCompatActivity {
 
     private int STORAGE_PERMISSION_CODE = 1;
     private RoomDB database;
+    private RecyclerView.LayoutManager layoutManager;
+    private int idCategory;
+    List<ProductData> data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,11 +31,19 @@ public class ProductListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product_list);
 
         database = RoomDB.getInstance(ProductListActivity.this);
+        RecyclerView recyclerView = findViewById(R.id.rvProducts);
+        Intent intent = getIntent();
+        idCategory = intent.getIntExtra("idcategory", 0);
+        if(idCategory != 0){
+            data = database.productDao().getByCategory(idCategory);
+        }else {
+            data = database.productDao().getAll();
+        }
 
-        String [] items = database.productDao().getAll();
-        ListView listView = findViewById(R.id.ProductList);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, items);
-        listView.setAdapter(adapter);
+
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setAdapter(new ProductsAdapter(this,data));
+        recyclerView.setLayoutManager(layoutManager);
 
         Button btn = (Button) findViewById(R.id.ProductAdd);
         btn.setOnClickListener(new View.OnClickListener() {

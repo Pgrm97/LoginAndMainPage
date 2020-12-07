@@ -2,6 +2,7 @@ package com.pucmm.loginandmainpage.database;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
@@ -21,6 +22,25 @@ public class ProductData implements Serializable {
     @ColumnInfo(name = "price")
     private String price;
 
+    @ColumnInfo(name = "category_id")
+    private int IDCategory;
+
+    public int getCantidad() {
+        return Cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        Cantidad = cantidad;
+    }
+
+    @Ignore
+    private int Cantidad;
+    @Ignore
+    public boolean selected;
+
+
+    @ColumnInfo(name = "product_image")
+    private String productImage;
 
     public int getID() {
         return ID;
@@ -52,6 +72,21 @@ public class ProductData implements Serializable {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public int getIDCategory() {
+        return IDCategory;
+    }
+
+    public void setIDCategory(int IDCategory) {
+        this.IDCategory = IDCategory;
+    }
+    public String getProductImage() {
+        return productImage;
+    }
+
+    public void setProductImage(String productImage) {
+        this.productImage = productImage;
     }
 
 }

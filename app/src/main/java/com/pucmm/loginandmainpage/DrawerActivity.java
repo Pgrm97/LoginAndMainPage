@@ -66,6 +66,19 @@ public class DrawerActivity extends AppCompatActivity {
         return true;
     }
 
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.cart:
+                startActivity(new Intent(this, CartActivity.class));
+                return true;
+            default: return super.onContextItemSelected(item);
+        }
+
+
+    }
+
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);

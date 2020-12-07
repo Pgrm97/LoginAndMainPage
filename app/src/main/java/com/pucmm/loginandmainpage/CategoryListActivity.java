@@ -1,6 +1,9 @@
 package com.pucmm.loginandmainpage;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +12,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.pucmm.loginandmainpage.database.CategoryData;
 import com.pucmm.loginandmainpage.database.RoomDB;
+import com.pucmm.loginandmainpage.ui.CategoryAdapter;
+
+import java.util.List;
 
 public class CategoryListActivity extends AppCompatActivity {
 
@@ -23,10 +30,12 @@ public class CategoryListActivity extends AppCompatActivity {
 
         database = RoomDB.getInstance(CategoryListActivity.this);
 
-        String [] items = database.categoryDao().getAll();
-        ListView listView = findViewById(R.id.CategoryList);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, items);
-        listView.setAdapter(adapter);
+
+        List<CategoryData> items = database.categoryDao().getAll();
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rvCategories);
+        CategoryAdapter categoryAdapter = new CategoryAdapter(this,items);
+        recyclerView.setAdapter(categoryAdapter);
+        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
 
         Button btn = (Button) findViewById(R.id.CategoryAdd);
         btn.setOnClickListener(new View.OnClickListener() {

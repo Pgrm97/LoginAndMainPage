@@ -11,4 +11,6 @@
     <string name="menu_home">E-Commerce</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="cart">151516546</string>
+    <string name="cart_items">cartItems</string>
 </resources>

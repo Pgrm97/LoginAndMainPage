@@ -16,6 +16,9 @@ public class CategoryData implements Serializable {
     private String categoryName;
 
 
+    @ColumnInfo(name = "category_image")
+    private String categoryimage;
+
 
 
     public int getID() {
@@ -33,5 +36,16 @@ public class CategoryData implements Serializable {
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
     }
+    public String getCategoryimage() {
+        return categoryimage;
+    }
 
+    public void setCategoryimage(String categoryimage) {
+        this.categoryimage = categoryimage;
+    }
+
+    @Override
+    public String toString() {
+        return this.categoryName;
+    }
 }

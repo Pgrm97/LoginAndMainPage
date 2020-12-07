@@ -7,11 +7,10 @@
     android:clickable="true"
     tools:context=".ProductListActivity">
 
-    <ListView
-        android:id="@+id/ProductList"
-        android:layout_width="388dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvProducts"
+        android:layout_width="match_parent"
         android:layout_height="571dp"
-        android:clickable="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
