@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +27,7 @@ import com.pucmm.loginandmainpage.database.RoomDB;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.List;
 
 public class ProductActivity extends AppCompatActivity {
 
@@ -59,6 +62,8 @@ public class ProductActivity extends AppCompatActivity {
 
             }
         });
+
+
 
 
         Button AddProductButton = (Button) findViewById(R.id.AddProduct);

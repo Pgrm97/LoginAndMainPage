@@ -24,8 +24,8 @@ public interface ProductDao {
     void reset(List<ProductData> productData);
 
     //Get all data query
-   // @Query("SELECT * FROM user_table")
-   // List<ProductData> getAll();
+    @Query("SELECT product_code FROM product_table")
+    String [] getAll();
 
 
 }

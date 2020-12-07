@@ -42,4 +42,9 @@
         android:name="com.pucmm.loginandmainpage.ProductActivity"
         android:label="activity_product"
         tools:layout="@layout/activity_product" />
+    <activity
+        android:id="@+id/productListActivity"
+        android:name="com.pucmm.loginandmainpage.ProductListActivity"
+        android:label="activity_product_list"
+        tools:layout="@layout/activity_product_list" />
 </navigation>

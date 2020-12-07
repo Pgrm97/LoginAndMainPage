@@ -15,7 +15,7 @@
             android:title="Category"
             android:icon="@drawable/ic_baseline_border_all_24"/>
         <item
-            android:id="@+id/productActivity"
+            android:id="@+id/productListActivity"
             android:title="Product"
             android:icon="@drawable/ic_baseline_shopping_basket_24"/>
 <!--        <item-->
