@@ -96,6 +96,7 @@ public class CategoryActivity extends AppCompatActivity {
                 Toast.makeText(CategoryActivity.this, "Espere un momento, guardando categoria", Toast.LENGTH_SHORT).show();
                 final String CategoryName = Categorynametext.getText().toString().trim();
                 final CategoryData data = categoryData;
+                data.setCategoryName(CategoryName);
                 if(bitmap != null){
                     byte [] Photo =  getStringImagen(bitmap);
                     String PhotoName  = CategoryName + ".jpg";
@@ -113,12 +114,11 @@ public class CategoryActivity extends AppCompatActivity {
                                     final String url = uri.toString();
                                     data.setCategoryimage(url);
                                     if(!CategoryName.equals("")){
-
-                                        data.setCategoryName(CategoryName);
                                         addCategory(data);
                                     }
                                 }});}});
                 }else if(id != 0){
+
                     addCategory(data);
                 }
 

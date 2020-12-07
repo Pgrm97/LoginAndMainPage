@@ -54,7 +54,7 @@ public class CartActivity extends AppCompatActivity {
             precioTotal = 0;
             for(ProductData n : list){
                 cantidadTotal += n.getCantidad();
-               precioTotal += Integer.getInteger(n.getPrice(),0);
+                precioTotal += Integer.parseInt(n.getPrice().trim(), 10);
             }
             subtotal.setText("Sub total (" + cantidadTotal + " items): " + precioTotal);
             recyclerView.setAdapter(new CartAdapter(this, list));
@@ -66,7 +66,7 @@ public class CartActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Toast.makeText(CartActivity.this, "Se esta procediendo a completar la compra", Toast.LENGTH_SHORT).show();
                 sharedPref.edit().putString(getString(R.string.cart_items), "").commit();
-
+                finish();
 
             }
         });

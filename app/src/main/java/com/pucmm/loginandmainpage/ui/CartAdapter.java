@@ -51,18 +51,16 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         holder.minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cantidad--;
-                product.setCantidad(cantidad);
-                holder.cantidad.setText(product.getCantidad());
+                product.setCantidad(product.getCantidad() - 1);
+                holder.cantidad.setText(String.valueOf(product.getCantidad()));
 
             }
         });
         holder.plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cantidad++;
-                product.setCantidad(cantidad);
-                holder.cantidad.setText(product.getCantidad());
+                product.setCantidad(product.getCantidad() + 1);
+                holder.cantidad.setText(String.valueOf(product.getCantidad()));
 
             }
         });

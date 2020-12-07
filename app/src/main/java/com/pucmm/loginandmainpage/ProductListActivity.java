@@ -39,7 +39,7 @@ public class ProductListActivity extends AppCompatActivity {
         idCategory = intent.getIntExtra("idcategory", 0);
 
         cargaritems();
-        
+
         Button btn = (Button) findViewById(R.id.ProductAdd);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
