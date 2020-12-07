@@ -131,7 +131,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
-        android:text="Enter Password"
+        android:text="Confirm Password"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextPasswordRegister" />
 
